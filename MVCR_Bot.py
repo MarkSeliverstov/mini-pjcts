@@ -24,8 +24,10 @@ def send_telegram(text: str):
 
 def main():
     number_of_no = 0
-    number_of_sent_no = 1
-    driver = webdriver.Chrome()
+    # For chrome
+    # driver = webdriver.Chrome(executable_path="path to app")
+    # For safari
+    driver = webdriver.Safari()
     driver.get("https://frs.gov.cz/cs/ioff/month/2022-9")
 
     elem = driver.find_elements(By.ID, "edit-name--2")
@@ -51,12 +53,6 @@ def main():
         else:
             print("No [{}]".format(number_of_no))
             print("––––––")
-            if number_of_no == 0:
-                send_telegram("No [{}]".format(number_of_sent_no))
-            elif number_of_no == 1000:
-                number_of_no = 0
-                number_of_sent_no += 1
-            number_of_no += 1
         time.sleep(15)
         driver.refresh()
 
